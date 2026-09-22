@@ -98,6 +98,7 @@ CREATE TABLE IF NOT EXISTS public.payment_adjustments (
   updated_at        timestamptz NOT NULL DEFAULT now()
 );
 
+DROP TRIGGER IF EXISTS trg_payment_adjustments_updated_at ON public.payment_adjustments;
 CREATE TRIGGER trg_payment_adjustments_updated_at
   BEFORE UPDATE ON public.payment_adjustments
   FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
